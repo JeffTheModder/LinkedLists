@@ -1,45 +1,33 @@
-class Node {
-public:
-    int value = 0;
-    Node *next = nullptr;
-};
+#include "linkedlist.h"
 
-class LinkedList {
-private:
-    int nodeCount = 0;
-    Node *lastNode = nullptr;
-public:
-    Node *firstNode = nullptr;
+int LinkedList::size() {
+    return nodeCount;
+}
 
-    int size() {
-        return nodeCount;
+Node* LinkedList::add() {
+    if (firstNode == nullptr) {
+        firstNode = new Node();
+        lastNode = firstNode;
+    } else {
+        lastNode->next = new Node();
+        lastNode = lastNode->next;
     }
+    nodeCount++;
+    return lastNode;
+}
 
-    Node* add() {
-        if (firstNode == nullptr) {
-            firstNode = new Node();
-            lastNode = firstNode;
-        } else {
-            lastNode->next = new Node();
-            lastNode = lastNode->next;
+Node* LinkedList::get_last() {
+    return lastNode;
+}
+
+Node* LinkedList::get(int index) {
+    if (index == 0) {
+        return firstNode;
+    } else {
+        Node* node = firstNode;
+        for (int i = 0; i < index; i++) {
+            node = node->next;
         }
-        nodeCount++;
-        return lastNode;
+        return node;
     }
-
-    Node* get_last() {
-        return lastNode;
-    }
-
-    Node* get(int index) {
-        if (index == 0) {
-            return firstNode;
-        } else {
-            Node* node = firstNode;
-            for (int i = 0; i < index; i++) {
-                node = node->next;
-            }
-            return node;
-        }
-    }
-};
+}
