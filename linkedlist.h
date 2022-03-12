@@ -15,6 +15,7 @@ public:
     Node *firstNode = nullptr;
     int size();
     Node* add();
+    Node* splice(int index);
     Node* get_last();
     Node* get(int index);
 };
